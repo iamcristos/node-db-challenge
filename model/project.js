@@ -9,6 +9,9 @@ module.exports = {
         return db('projects')
                 .where({id})
                 .first()
+                .then((ids)=>{
+                    if(!ids) return null
+                })
     },
 
     getProjectName: function(project_name) {
@@ -24,8 +27,27 @@ module.exports = {
 
     getProjectAction: function(project_id) {
         return db('actions')
-                .select("*")
+                .select("action_description", "action_notes", "id", "action_completed")
                 .where({project_id})
+    },
+
+    updateProject: function(project,id) {
+        return db('products')
+                .update(project)
+                .where({id})
+                .then((ids)=>{
+                    if(ids>0) {
+                        return this.getProjectId(id)
+                    }
+                })
+    },
+
+    deleteProject: function(id) {
+        const project = this.getProjectId(id)
+        return db('projects')
+                .del()
+                .where({id})
+                .then(()=> project)
     }
 }
 

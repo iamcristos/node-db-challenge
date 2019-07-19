@@ -35,5 +35,26 @@ module.exports = {
         } catch (error) {
             return response.errorHandler(res, 500, "Error cannot find project actions")
         }
+    },
+
+    updateProject: async function(req, res) {
+        const {id} = req.params;
+        const {body} = req;
+        try {
+            const project = await db.updateProject(body, id)
+            return response.successHandler(res,200, project)
+        } catch (error) {
+            return response.errorHandler(res, 500, "Error could not update")
+        }
+    },
+
+    deleteProject: async function(req, res) {
+        const {id} = req.params;
+        try {
+            const project = await db.deleteProject(id)
+            return response.successHandler(res,200, project)
+        } catch (error) {
+            return response.errorHandler(res, 500, "Error cannot delete Item")
+        }
     }
-}
+};
