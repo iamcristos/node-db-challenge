@@ -30,6 +30,7 @@ module.exports = {
         }
         try {
             const project = await db.getProjectId(id)
+            console.log(project)
             if(!project) {
                 return response.errorHandler(res, 404, "Project doesnot exists")
             }

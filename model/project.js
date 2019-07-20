@@ -11,6 +11,7 @@ module.exports = {
                 .first()
                 .then((ids)=>{
                     if(!ids) return null
+                    return ids
                 })
     },
 

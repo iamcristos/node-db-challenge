@@ -8,7 +8,7 @@ module.exports = {
         }
         if (!body.action_description) {
             return response.errorHandler(res, 400, 
-                "project_name and action_description are required")
+                " action_description are required")
         }
         next()
     },

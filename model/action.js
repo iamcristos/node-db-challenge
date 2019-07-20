@@ -1,11 +1,11 @@
 const db = require('../data/dbConfig');
-const product = require('./project');
+const project = require('./project');
 
 module.exports = {
     addActions(actions, project_id) {
         return db('actions')
                 .insert({...actions, project_id})
-                .then(()=> product.getProjectAction(project_id))
+                .then(()=> project.getProjectAction(project_id))
     },
 
     getAction() {
